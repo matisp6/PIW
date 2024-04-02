@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style2.css"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Roboto+Flex:opsz,wght@8..144,300&display=swap" rel="stylesheet">
+
+    <title>Tranquil Travels</title>
+
+</head>
+<body>
+    <body>
+        <nav class="fixed-navigation">
+            <img class="logo" src="./Assets/logo.svg"/>
+            <ul class="nav-links">
+                <li><a class="nav-link" href="#">Home</a></li>
+                <li><a class="nav-link" href="#find-offers">Find offers</a></li>
+                <li><a class="nav-link" href="#add-new-offers">Add new offers</a></li>
+                <li><a class="nav-link" href="#">My offers</a></li>
+                <li><a class="nav-link" href="#">Favorites</a></li>
+                <button class="button primary">Log out</button>
+            </ul>
+            <button class="button primary hidden">Menu</button>
+        </nav>
+        <section id="hero" class="hero-section">
+            <!-- <article class="hero-details"> -->
+                <p class="title-large">Welcome, your tranquility oasis awaits</p>
+            <!-- </article> -->
+        </section>
+    <section id="browse" class="browse-section">
+        <p class="title-middle">Explore the hotels</p>
+        <input class="searchbar" placeholder="Search by hotel name, place, description etc.">
+        <section class="grid hotel-cards">
+            <article class="hotel-card">
+                <div class="card-image">
+                    <p class="chip">Florence</p>
+                    <p class="chip-fav"><img src="./Assets/heart-filled.svg" style="scale: 0.8";></p>
+                </div>
+                <p class="text-middle">Harmony Hideaway Hotel</p>
+                <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus quis felis a venenatis. Suspendisse accumsan aliquam lorem, sit amet ultricies justo tristique nec.</p>
+                <div class="hotel-card-footer">
+                    <p class="star">★★★★★</p>
+                    <p class="text-middle">100€/room</p>
+                </div>
+                <div class="hotel-card-footer-button">
+                    <button class="button primary">View offer <img src="./Assets/Arrow.svg"></button>
+                </div>
+            </article>
+            <article class="hotel-card">
+                <div class="card-image">
+                    <p class="chip">Madrid</p>
+                    <p class="chip-fav"><img src="./Assets/heart.svg"  style="scale: 0.8";></p>
+                </div>
+                <p class="text-middle">Serene Retreat</p>
+                <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus quis felis a venenatis. Suspendisse accumsan aliquam lorem, sit amet ultricies justo tristique nec.</p>
+                <div class="hotel-card-footer">
+                    <p class="star">★★★★☆</p>
+                    <p class="text-middle">70€/room</p>
+                </div>
+                <div class="hotel-card-footer-button">
+                    <button class="button primary">View offer <img src="./Assets/Arrow.svg"></button>
+                </div>
+            </article>
+            <article class="hotel-card">
+                <div class="card-image">
+                    <p class="chip">Sintra</p>
+                    <p class="chip-fav"><img src="./Assets/heart.svg"  style="scale: 0.8";></p>
+                </div>
+                <p class="text-middle">Palm Springs</p>
+                <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus quis felis a venenatis. Suspendisse accumsan aliquam lorem, sit amet ultricies justo tristique nec.</p>
+                <div class="hotel-card-footer">
+                    <p class="star">★★★★☆</span></p>
+                    <p class="text-middle">65€/room</p>
+                </div>
+                <div class="hotel-card-footer-button">
+                    <button class="button primary">View offer <img src="./Assets/Arrow.svg"></button>
+                </div>
+            </article>
+            <article class="hotel-card">
+                <div class="card-image">
+                    <p class="chip">Sienna</p>
+                    <p class="chip-fav"><img src="./Assets/heart-filled.svg" style="scale: 0.8;"></p>
+                </div>
+                <p class="text-middle">Oasis Resort</p>
+                <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus quis felis a venenatis. Suspendisse accumsan aliquam lorem, sit amet ultricies justo tristique nec.</p>
+                <div class="hotel-card-footer">
+                    <p class="star">★★★★★</p>
+                    <p class="text-middle">115€/room</p>
+                </div>
+                <div class="hotel-card-footer-button">
+                    <button class="button primary">View offer <img src="./Assets/Arrow.svg"></button>
+                </div>
+            </article>
+        </section>
+    </section>
+    <section id="desc" class="desc-section">
+        <p class="title-large" style="margin-bottom: 35px;">Serene Retreat</p>
+        <section class="desc-grid">
+        <div class="desc-image-container"></div>
+        <article class="desc-details">
+            <!-- <p class="title-larger">Your tranquillity oasis awaits</p> -->
+            <p class="text-mini"><span class="bold-text">Location:</span> Madrid </p>
+            <p class="text-mini"><span class="bold-text">Local category: </span><span style="font-size: 13px;">★★★★☆</span> </p>
+            <p class="text-mini"><span class="bold-text">Price:</span> 70€/room/night </p>
+            <p class="text-mini"><span class="bold-text">Description:</span>
+            <p class="text-mini"> </p>
+            <p class="text-mini"> </p>
+            <p class="text-mini">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec leo ligula. Etiam fermentum est in euismod egestas. Curabitur at condimentum ligula. Phasellus nunc velit, facilisis fermentum congue ac, cursus at leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam nec sapien vitae neque scelerisque tempus. Vestibulum hendrerit tellus ut pulvinar feugiat. Nullam iaculis vitae justo sit amet tempus. Nam nunc nunc, porttitor sed turpis quis, feugiat egestas leo. Phasellus consequat magna ante, ac aliquam felis convallis sit amet. Sed massa lorem, iaculis ac vestibulum ac, tempus a tortor. Ut posuere ipsum nec condimentum vehicula. Curabitur orci velit, aliquam vel arcu quis, semper congue ligula. </p>
+            <div class="desc-buttons">
+            <button class="button primary limit-width edit">Edit  <img src="./Assets/edit.svg"></button>
+            <button class="button primary limit-width">Remove  <img src="./Assets/remove.svg"></button>
+            </div>
+            <div class="hero-cards">
+                <div class="card-image-desc">
+                </div>
+                <div class="card-image-desc">
+                </div>
+            </div>
+        </article>
+        </section>
+    </section>
+    </nav>
+</body>
+</html>
