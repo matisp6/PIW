@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- selektor listy do wyboru, gdzie ma być dodane zadanie -->
+        <select id="list-selector" class="form-control">
+            <option value="urgent">Pilne</option>
+            <option value="medium">Średnio Pilne</option>
+            <option value="low">Mało Pilne</option>
+        </select>
+
+        <!-- Pole do wprowadzania nowego zadania -->
+        <input type="text" id="new-task-input" class="form-control mt-2" placeholder="Dodaj zadanie">
+        <button onclick="addTask()" class="btn btn-success mt-2">Dodaj</button>
+
+        <!-- Przycisk do cofnięcia usunięcia -->
+        <button onclick="undoLastRemoval()" class="btn btn-info mt-2">Cofnij usunięcie</button>
+
+        <!-- Pole do wyszukiwania w zadaniach -->
+        <input type="text" id="search-input" oninput="filterTasks()" class="form-control mt-2" placeholder="Szukaj...">
+        <div class="form-check mt-2">
+            <input type="checkbox" id="case-sensitive" class="form-check-input">
+            <label class="form-check-label" for="case-sensitive">Uwzględniaj wielkość liter</label>
+        </div>
+
+        <!-- Sekcje list zadaniami -->
+        <div id="lists">
+            <div class="list" id="urgent">
+                <h3 onclick="toggleList('urgent')">Pilne</h3>
+                <ul></ul>
+            </div>
+            <div class="list" id="medium">
+                <h3 onclick="toggleList('medium')">Średnio Pilne</h3>
+                <ul></ul>
+            </div>
+            <div class="list" id="low">
+                <h3 onclick="toggleList('low')">Mało Pilne</h3>
+                <ul></ul>
+            </div>
+        </div>
+
+        <!-- Dialog do potwierdzenia usunięcia zadania -->
+        <dialog id="confirmation-dialog">
+            <form method="dialog">
+                <p>Czy na pewno chcesz usunąć zadanie o treści...?</p>
+                <p id="task-text">?</p>
+                <menu class="dialog-menu">
+                    <button value="delete" class="btn btn-danger">Usuń</button>
+                    <button value="cancel" class="btn btn-secondary">Anuluj</button>
+                </menu>
+            </form>
+        </dialog>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

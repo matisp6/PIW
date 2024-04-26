@@ -1,0 +1,30 @@
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.dialog-menu {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.task-text.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.completed-date {
+    font-style: normal;
+    color: black;
+}
+
+
