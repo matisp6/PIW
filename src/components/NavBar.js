@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg'; 
+import { useUser, logout } from '../data/userService';
 
 function NavBar() {
+  const user = useUser();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
     <nav className="fixed-navigation">
       <Link to="/">
@@ -14,7 +25,17 @@ function NavBar() {
         <li><Link className="nav-link" to="/add-new-offers">Add new offers</Link></li>
         <li><Link className="nav-link" to="#">My offers</Link></li>
         <li><Link className="nav-link" to="#">Favorites</Link></li>
-        <button className="button primary">Log out</button>
+        {user ? (
+          <div className="user-info">
+            <span className="user-info-email">{user.email}</span>
+            <button className="button primary nav-button logout" onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <>
+            <li><Link className="nav-link" to="/login"><button className="button primary nav-button">Login</button></Link></li>
+            <li><Link className="nav-link" to="/register"><button className="button tertiary nav-button">Register</button></Link></li>
+          </>
+        )}
       </ul>
       <button className="button primary hidden">Menu</button>
     </nav>

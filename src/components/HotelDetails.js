@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getHotelById } from '../data/userService';
 import editIcon from '../assets/edit.svg';
 import removeIcon from '../assets/remove.svg';
 
-function HotelDetails({ hotels }) {
+function HotelDetails() {
   const { id } = useParams();
-  const hotel = hotels.find(h => h.id.toString() === id);
+  const [hotel, setHotel] = useState(null);
+
+  useEffect(() => {
+    const fetchHotel = async () => {
+      try {
+        const fetchedHotel = await getHotelById(id);
+        setHotel(fetchedHotel);
+      } catch (error) {
+        console.error("Error fetching hotel details:", error);
+      }
+    };
+
+    fetchHotel();
+  }, [id]);
 
   if (!hotel) {
     return <div>Hotel not found</div>;
