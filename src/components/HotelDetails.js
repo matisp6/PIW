@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getHotelById } from '../data/userService';
 import editIcon from '../assets/edit.svg';
 import removeIcon from '../assets/remove.svg';
+import contactIcon from '../assets/contact.svg';
+import { useSnackbar } from 'notistack';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
+import { useUser } from '../data/userService';
 
 function HotelDetails() {
   const { id } = useParams();
   const [hotel, setHotel] = useState(null);
+  const [message, setMessage] = useState('');
+  const [open, setOpen] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+  const user = useUser();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchHotel = async () => {
@@ -20,6 +30,26 @@ function HotelDetails() {
 
     fetchHotel();
   }, [id]);
+
+  const handleMessageChange = (e) => setMessage(e.target.value);
+  const handleSendEmail = () => {
+    enqueueSnackbar('MESSAGE SENT', { variant: 'success' });
+    setMessage('');
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    if (user) {
+      setOpen(true);
+    } else {
+      enqueueSnackbar('YOU MUST LOG IN FIRST', { variant: 'warning' });
+      navigate('/login');
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   if (!hotel) {
     return <div>Hotel not found</div>;
@@ -38,6 +68,7 @@ function HotelDetails() {
           <div className="desc-buttons">
             <button className="button primary limit-width edit">Edit <img src={editIcon} alt="Edit"/></button>
             <button className="button primary limit-width">Remove <img src={removeIcon} alt="Remove"/></button>
+            <button className="button primary limit-width contact" onClick={handleOpen}>Contact<img src={contactIcon} alt="Contact"/></button>
           </div>
           <div className="hero-cards">
             <div className="card-image-desc" style={{ backgroundImage: `url(${hotel.additionalImage1})` }}></div>
@@ -45,6 +76,35 @@ function HotelDetails() {
           </div>
         </article>
       </div>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Contact the Owner</DialogTitle>
+        <DialogContent>
+          <TextField
+            margin="dense"
+            id="email"
+            label="Your email"
+            type="email"
+            fullWidth
+            variant="standard"
+            value={user?.email}
+            disabled
+          />
+          <TextField
+            margin="dense"
+            id="message"
+            label="Your message"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={message}
+            onChange={handleMessageChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSendEmail}>Send</Button>
+        </DialogActions>
+      </Dialog>
     </section>
   );
 }

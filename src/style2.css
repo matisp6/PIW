@@ -146,6 +146,17 @@ a {
 .button.primary.limit-width.edit img, a .button.primary.limit-width.edit img {
 margin-left: 6px;
 }
+
+.button.primary.limit-width.contact, a .button.primary.limit-width.contact {
+    background-color:#E6E9D8; 
+}
+
+.button.primary.limit-width.contact:hover, a .button.primary.limit-width.contact:hover {
+    background-color: #616161ca;
+    color: var(--neutral);
+    transition: var(--transition);
+}
+
 .primary, a .primary {
     background-color: var(--primary-light);
     border-radius: var(--radius-medium);
@@ -233,6 +244,89 @@ margin-left: 6px;
     margin-top: 22px;
     margin-bottom: 22px;
 }
+
+.favorites-section {
+    padding: 20px;
+  }
+  
+  .favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .favorite-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: var(--white);
+    transition: var(--transition);
+  }
+  
+  .favorite-item:hover {
+    background-color: var(--neutral);
+  }
+  
+  .favorite-link {
+    display: flex;
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .favorite-image {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-small);
+  }
+  
+  .favorite-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px; /* Dodano margines */
+  }
+  
+  .favorite-details h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .favorite-details p {
+    margin: 5px 0 0;
+  }
+  
+  .favorite-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .favorite-toggle img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .favorite-toggle:hover img {
+    transform: scale(1.1);
+  }
+  
+  .empty {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
 
 
 .title-large{
@@ -550,6 +644,38 @@ button.button.tertiary.nav-button:hover {
     padding: 43px;
 }
 
+.contact-form {
+    margin-top: 20px;
+  }
+  
+  .contact-form h3 {
+    margin-bottom: 10px;
+  }
+  
+  .contact-form .form-input,
+  .contact-form .form-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .contact-form .form-button {
+    padding: 10px 20px;
+    background-color: var(--primary-light);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-medium);
+    cursor: pointer;
+    font-size: 15px;
+    transition: var(--transition);
+  }
+  
+  .contact-form .form-button:hover {
+    background-color: var(--hover);
+  }
+  
 
 .main-center {
     display: flex;

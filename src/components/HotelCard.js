@@ -30,26 +30,28 @@ const styleMap = {
     backgroundPosition: 'right calc(50% + 15px)'
   }
 };
-function HotelCard({ id, image, location, name, description, price, rating, isFavorited }) {
-  const cardStyle = styleMap[id] || {};
+
+function HotelCard({ hotel, isFavorite, toggleFavorite }) {
+  const cardStyle = styleMap[hotel.id] || {};
+  
   return (
     <article className="hotel-card">
-      <div className="card-image" style={cardStyle}>
-        <p className="chip">{location}</p>
-        <p className="chip-fav">
-          <img src={isFavorited ? heartFilledIcon : heartIcon} style={{ scale: '0.8' }} alt="Favorite" />
+      <div className="card-image" style={{ ...cardStyle, backgroundImage: `url(${hotel.image})` }}>
+        <p className="chip">{hotel.location}</p>
+        <p className="chip-fav" onClick={(e) => { e.preventDefault(); toggleFavorite(hotel); }}>
+          <img src={isFavorite ? heartFilledIcon : heartIcon} style={{ scale: '0.8' }} alt="Favorite" />
         </p>
       </div>
-      <p className="text-middle">{name}</p>
-      <p className="text-small">{description}</p>
+      <p className="text-middle">{hotel.name}</p>
+      <p className="text-small">{hotel.description}</p>
       <div className="hotel-card-footer">
-        <p className="star">{rating}</p>
-        <p className="text-middle">{price}/room</p>
+        <p className="star">{hotel.rating}</p>
+        <p className="text-middle">{hotel.price}/room</p>
       </div>
       <div className="hotel-card-footer-button">
-      <Link to={`/hotel/${id}`} className="button primary">
-        View offer <img src={arrowIcon} alt="Arrow"/>
-      </Link>
+        <Link to={`/hotel/${hotel.id}`} className="button primary">
+          View offer <img src={arrowIcon} alt="Arrow"/>
+        </Link>
       </div>
     </article>
   );

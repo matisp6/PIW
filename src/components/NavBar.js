@@ -24,7 +24,7 @@ function NavBar() {
         <li><Link className="nav-link" to="/find-offers">Find offers</Link></li>
         <li><Link className="nav-link" to="/add-new-offers">Add new offers</Link></li>
         <li><Link className="nav-link" to="#">My offers</Link></li>
-        <li><Link className="nav-link" to="#">Favorites</Link></li>
+        <li><Link className="nav-link" to="/favorites">Favorites</Link></li>
         {user ? (
           <div className="user-info">
             <span className="user-info-email">{user.email}</span>

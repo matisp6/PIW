@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 
 import NavBar from './components/NavBar';
 import HeroSection from './components/HeroSection';
@@ -17,6 +17,9 @@ import cards2 from './assets/cards2.jpg';
 import cards3 from './assets/cards3.jpg';
 import cards4 from './assets/cards4.jpg';
 import { getHotels } from './data/userService';
+import { SnackbarProvider } from 'notistack';
+import favoritesReducer from './reducers/favoritesReducer';
+import Favorites from './Pages/Favorites'; 
 
 function App() {
   const [hotels, setHotels] = useState([
@@ -73,6 +76,8 @@ function App() {
     //   isFavorited: true
     // }
   ]);
+  const [favorites, dispatch] = useReducer(favoritesReducer, JSON.parse(localStorage.getItem('favorites')) || []);
+
 
   useEffect(() => {
     const fetchHotels = async () => {
@@ -95,24 +100,36 @@ function App() {
     ]);
   };
 
+  const toggleFavorite = (hotel) => {
+    const isFavorite = favorites.some(fav => fav.id === hotel.id);
+    if (isFavorite) {
+      dispatch({ type: 'REMOVE_FAVORITE', payload: hotel });
+    } else {
+      dispatch({ type: 'ADD_FAVORITE', payload: hotel });
+    }
+  };
+
     return (
-      <Router>
-        <div>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={
-              <>
-                <HeroSection />
-                <BrowseSection hotels={hotels} />
-              </>
-            } />
-          <Route path="/hotel/:id" element={<HotelDetails hotels={hotels} />} />
-          <Route path="/add-new-offers" element={<AddHotelForm addHotel={addHotel} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          </Routes>
-        </div>
-      </Router>
+      <SnackbarProvider maxSnack={3}>
+        <Router>
+          <div>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <HeroSection />
+                  <BrowseSection hotels={hotels} toggleFavorite={toggleFavorite} favorites={favorites} />
+                </>
+              } />
+              <Route path="/hotel/:id" element={<HotelDetails hotels={hotels} />} />
+              <Route path="/add-new-offers" element={<AddHotelForm addHotel={addHotel} />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/favorites" element={<Favorites favorites={favorites} toggleFavorite={toggleFavorite} />} />
+            </Routes>
+          </div>
+        </Router>
+      </SnackbarProvider>
     );
   }
 

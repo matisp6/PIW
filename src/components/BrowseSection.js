@@ -2,25 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import HotelCard from './HotelCard';
 
-function BrowseSection({ hotels }) {
+function BrowseSection({ hotels, toggleFavorite, favorites }) {
   return (
     <section id="browse" className="browse-section">
       <p className="title-middle">Explore the hotels</p>
       <input className="searchbar" placeholder="Search by hotel name, place, description etc." />
       <div className="grid hotel-cards">
         {hotels.map((hotel) => (
-          <Link key={hotel.id} to={`/hotel/${hotel.id}`}>
-            <HotelCard
-              id={hotel.id}
-              image={hotel.image}
-              location={hotel.location}
-              name={hotel.name}
-              description={hotel.description}
-              price={hotel.price}
-              rating={hotel.rating}
-              isFavorited={hotel.isFavorited}
-            />
-          </Link>
+          <div key={hotel.id}>
+            <Link to={`/hotel/${hotel.id}`}>
+              <HotelCard
+                hotel={hotel}
+                isFavorite={favorites.some(fav => fav.id === hotel.id)}
+                toggleFavorite={toggleFavorite}
+              />
+            </Link>
+          </div>
         ))}
       </div>
     </section>
