@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg'; 
 import { useUser, logout } from '../data/userService';
 
 function NavBar() {
   const user = useUser();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await logout();
+      navigate('/');
     } catch (error) {
       console.error("Error logging out:", error);
     }
@@ -25,6 +27,7 @@ function NavBar() {
         <li><Link className="nav-link" to="/add-new-offers">Add new offers</Link></li>
         <li><Link className="nav-link" to="#">My offers</Link></li>
         <li><Link className="nav-link" to="/favorites">Favorites</Link></li>
+        <li><Link className="nav-link" to="/chat">Chat</Link></li>
         {user ? (
           <div className="user-info">
             <span className="user-info-email">{user.email}</span>

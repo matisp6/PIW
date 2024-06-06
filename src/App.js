@@ -20,6 +20,7 @@ import { getHotels } from './data/userService';
 import { SnackbarProvider } from 'notistack';
 import favoritesReducer from './reducers/favoritesReducer';
 import Favorites from './Pages/Favorites'; 
+import Chat from './Pages/Chat';
 
 function App() {
   const [hotels, setHotels] = useState([
@@ -77,7 +78,7 @@ function App() {
     // }
   ]);
   const [favorites, dispatch] = useReducer(favoritesReducer, JSON.parse(localStorage.getItem('favorites')) || []);
-
+  const [chats, setChats] = useState([]);
 
   useEffect(() => {
     const fetchHotels = async () => {
@@ -109,6 +110,13 @@ function App() {
     }
   };
 
+  const handleChatCreate = (newChatId) => {
+    setChats(prevChats => [
+      ...prevChats,
+      { id: newChatId, users: [/* add users here */] }
+    ]);
+  };
+
     return (
       <SnackbarProvider maxSnack={3}>
         <Router>
@@ -126,6 +134,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/favorites" element={<Favorites favorites={favorites} toggleFavorite={toggleFavorite} />} />
+              <Route path="/chat" element={<Chat />} />
             </Routes>
           </div>
         </Router>
